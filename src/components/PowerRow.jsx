@@ -66,7 +66,7 @@ export const PowerRow = (props) => {
       });
 
       /* get base damage */
-      powerDamage += newChainPowers[i].damageEnhancement > 0 ? powerDamage * (1 + (newChainPowers[i].damageEnhancement / 100)) : 0;
+      powerDamage += newChainPowers[i].damageEnhancement > 0 ? powerDamage * newChainPowers[i].damageEnhancement : 0;
       /* get proc damage */
       powerDamage += getProcDamage(newChainPowers[i]);
       /* update chain power damage */
