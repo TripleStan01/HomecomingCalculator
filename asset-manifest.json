@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/HomecomingCalculator/static/css/main.0a2006bd.css",
-    "main.js": "/HomecomingCalculator/static/js/main.17241476.js",
+    "main.js": "/HomecomingCalculator/static/js/main.b641e8ac.js",
     "static/js/787.6ed83658.chunk.js": "/HomecomingCalculator/static/js/787.6ed83658.chunk.js",
     "index.html": "/HomecomingCalculator/index.html",
     "main.0a2006bd.css.map": "/HomecomingCalculator/static/css/main.0a2006bd.css.map",
-    "main.17241476.js.map": "/HomecomingCalculator/static/js/main.17241476.js.map",
+    "main.b641e8ac.js.map": "/HomecomingCalculator/static/js/main.b641e8ac.js.map",
     "787.6ed83658.chunk.js.map": "/HomecomingCalculator/static/js/787.6ed83658.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0a2006bd.css",
-    "static/js/main.17241476.js"
+    "static/js/main.b641e8ac.js"
   ]
 }
