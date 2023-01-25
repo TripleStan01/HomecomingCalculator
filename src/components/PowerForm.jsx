@@ -26,21 +26,6 @@ export const PowerForm = (props) => {
             </Form.Group>
           </Col>
         </Row>
-        {
-          props.archetype === "Brute" && (
-            <Row>
-              <Col>
-                <Form.Group className="mb-3">
-                  <Form.Label>Fury (0-100)</Form.Label>
-                  <Form.Control
-                    placeholder="0"
-                    onChange={e => props.handleGlobalDamageBonusChange(e)}
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
-          )
-        }
         <Row>
           <Col>
             <Form.Group className="mb-3">

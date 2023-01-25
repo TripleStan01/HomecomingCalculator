@@ -320,7 +320,7 @@ export const PowerRow = (props) => {
         }
         <Col>
           <Form.Group className="py-3">
-            <Form.Label>Damage Enhancement</Form.Label>
+            <Form.Label>Damage Bonus</Form.Label>
             <Form.Control
               onChange={(e) => handleDamageEnhancementChange(e)}
               type="number" 
@@ -330,7 +330,7 @@ export const PowerRow = (props) => {
         </Col>
         <Col>
           <Form.Group className="py-3">
-          <Form.Label>Recharge Enhancement</Form.Label>
+          <Form.Label>Recharge Bonus</Form.Label>
             <Form.Control
               onChange={(e) => handleRechargeEnhancementChange(e)}
               type="number" 
