@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import CloseButton from 'react-bootstrap/CloseButton';
 import getTotalPowerDamage from '../utility/getTotalPowerDamage';
 import { getCritStrikesPPM, isInCritStrikesWindow } from '../utility/critStrikes';
 
@@ -212,12 +213,18 @@ export const PowerRow = (props) => {
     setAssassinsFocusStacks(e.target.value);
   }
 
+  const handleRemovePower = (e) => {
+    let currentChainPowers = [...props.chainPowers];
+    currentChainPowers.splice(e.target.value, 1);
+    props.setChainPowers([...currentChainPowers])
+  }
+
   return (
-    <div>
-      <Row
-        style={props.isCritStrikes ? {backgroundColor: "#7f060a", color: "#fff"} : {}}
-        className={isInCritStrikesWindow(props.chainPowers, props.row) ? "isInCritStrikesWindow" : ''}
-      >
+    <div 
+      className={isInCritStrikesWindow(props.chainPowers, props.row) ? "isInCritStrikesWindow list-group-item" : 'list-group-item'}
+      style={props.isCritStrikes ? {borderBottom: "#7f060a 3px solid", alignItems: "center"} : {alignItems: "center"}}
+    >
+      <Row>
         <Col>
           <Form.Group className="py-3">
             <Form.Label>Power</Form.Label>
@@ -302,7 +309,7 @@ export const PowerRow = (props) => {
           )
         }
         {
-          currentPowerName.includes("Assassins") && (
+          (currentPowerName.includes("Assassins") && currentPowerName.includes("Quick")) && (
             <Col>
               <Form.Group className="py-3">
               <Form.Label>Assassin's Focus Stacks</Form.Label>
@@ -370,6 +377,10 @@ export const PowerRow = (props) => {
             </Form.Select>
           </Form.Group>
         </Col>
+        <CloseButton
+          value={props.row}
+          onClick={(e) => handleRemovePower(e)}
+        />
       </Row>
       {
         props.archetype === "Scrapper" && (
@@ -437,9 +448,9 @@ export const PowerRow = (props) => {
           </Row>
         )
       }
-      <Row>
+      <Col className="fw-bold">
         <span>Damage: {props.chainPowers[props.row].damage.toFixed(2)}</span>
-      </Row>
+      </Col>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 
 export const PowerForm = (props) => {
     return (
-        <Container className="mt-3">
+      <Container className="mt-3 bg-dark text-light p-3">
         <Row>
           <Col>
             <Form.Group className="mb-3">

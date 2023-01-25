@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { PowerRow } from './PowerRow';
 import { isInCritStrikesWindow } from '../utility/critStrikes';
 
 export const PowerTable = (props) => {
+  const [numberOfPowers, setNumberOfPowers] = useState(0);
+
+  useEffect(() => {
+    setNumberOfPowers(props.chainPowers.length)
+  }, [props.chainPowers])
+
   const handleAddPrimaryPowerClick = () => {
     let currentChainPowers = [...props.chainPowers];
 
@@ -44,6 +51,7 @@ export const PowerTable = (props) => {
     }
 
     props.setChainPowers([...currentChainPowers, newChainPower]);
+    setNumberOfPowers(numberOfPowers + 1);
   }
 
   const handleAddSecondaryPowerClick = () => {
@@ -82,6 +90,7 @@ export const PowerTable = (props) => {
     }
 
     props.setChainPowers([...currentChainPowers, newChainPower]);
+    setNumberOfPowers(numberOfPowers + 1);
   }
 
   const handleAddCritStrikesPowerClick = () => {
@@ -120,6 +129,7 @@ export const PowerTable = (props) => {
 
     currentChainPowers[props.chainPowers.length] = newChainPower;
     props.setChainPowers([...currentChainPowers]);
+    setNumberOfPowers(numberOfPowers + 1);
   }
 
   const handleAddEpicPowerClick = () => {
@@ -158,10 +168,11 @@ export const PowerTable = (props) => {
 
     currentChainPowers[props.chainPowers.length] = newChainPower;
     props.setChainPowers([...currentChainPowers]);
+    setNumberOfPowers(numberOfPowers + 1);
   }
 
   return (
-    <Container className="mt-3">
+    <Container className="mt-3 list-group" style={{paddingRight: "0"}}>
       {
         props.chainPowers.length > 0 ? (
           props.chainPowers.map((power, i) => {
@@ -219,39 +230,62 @@ export const PowerTable = (props) => {
           <Row><span>No Powers</span></Row>
         )
       }
-      <Button
-        onClick={handleAddPrimaryPowerClick}
-        className="my-3"
-        style={{"marginRight": "5px"}}
-        variant="dark"
-      >
-        Add Primary Power
-      </Button>
-      <Button
-        onClick={handleAddSecondaryPowerClick}
-        className="my-3"
-        style={{"marginRight": "5px"}}
-        variant="dark"
-      >
-        Add Secondary Power
-      </Button>
-      <Button
-        onClick={handleAddEpicPowerClick}
-        className="my-3"
-        style={{"marginRight": "5px"}}
-        variant="dark"
-      >
-        Add Epic Power
-      </Button>
+      <div>
+        { props.archetype && (
+            <Button
+              onClick={handleAddPrimaryPowerClick}
+              className="my-3"
+              style={{"marginRight": "5px"}}
+              variant="dark"
+              disabled={numberOfPowers === 10}
+            >
+              Add Primary Power
+            </Button>
+          )
+        }
+        { props.archetype && (
+            <Button
+              onClick={handleAddSecondaryPowerClick}
+              className="my-3"
+              style={{"marginRight": "5px"}}
+              variant="dark"
+              disabled={numberOfPowers === 10}
+            >
+              Add Secondary Power
+            </Button>
+          )
+        }
+        { props.archetype && (
+            <Button
+              onClick={handleAddEpicPowerClick}
+              className="my-3"
+              style={{"marginRight": "5px"}}
+              variant="dark"
+              disabled={numberOfPowers === 10}
+            >
+              Add Epic Power
+            </Button>
+          )
+        }
+        {
+          props.archetype === "Scrapper" && (
+            <Button
+              onClick={handleAddCritStrikesPowerClick}
+              className="my-3"
+              style={{"marginRight": "5px"}}
+              variant="danger"
+              disabled={numberOfPowers === 10}
+            >
+                Add Critical Strikes Power
+            </Button>
+          )
+        }
+      </div>
       {
-        props.archetype === "Scrapper" && (
-          <Button
-            onClick={handleAddCritStrikesPowerClick}
-            className="my-3"
-            style={{"marginRight": "5px"}}
-            variant="danger">
-              Add Critical Strikes Power
-          </Button>
+        numberOfPowers >= 10 && (
+          <div>
+            <span style={{color: "red"}}>You may only add up to 10 powers.</span>
+          </div>
         )
       }
     </Container>

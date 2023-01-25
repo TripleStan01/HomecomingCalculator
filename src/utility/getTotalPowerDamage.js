@@ -899,6 +899,7 @@ export default function getTotalPowerDamage({
   /* Martial Arts Crits */
   if(power.full_name.split('.')[1] === "Martial_Arts" && archetype === "Scrapper") {
     let critDamage = 0;
+    console.log(power.effects[0])
     if (
       displayScrapperCriticalDamage &&
       !displayScrappersStrikeATO &&

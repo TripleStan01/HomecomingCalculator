@@ -1,6 +1,5 @@
 .isInCritStrikesWindow {
-  background: blue;
-  color: #fff;
+  border-bottom: 3px solid red;
 }
 
 .App-logo {

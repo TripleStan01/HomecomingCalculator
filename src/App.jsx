@@ -27,7 +27,8 @@ function App() {
 
     let powerNames;
     let powersetDisplayNames;
-    fetch(`power_data/${PrimaryData[e.target.value]}/index.json`)
+    console.log(`power_data/${PrimaryData[e.target.value]}/index.json`)
+    fetch(`HomecomingCalculator/power_data/${PrimaryData[e.target.value]}/index.json`)
       .then((response) => response.json())
       .then((data) => {
         powersetDisplayNames = data.powerset_display_names;
@@ -35,21 +36,21 @@ function App() {
         if(powersetDisplayNames[0] === 'Street Justice') {
           powersetDisplayNames[0] = 'Brawling'
         }
-        return fetch(`power_data/${PrimaryData[e.target.value]}/${powersetDisplayNames[0].toLowerCase().replace(/ +/g, '_')}/index.json`)
+        return fetch(`HomecomingCalculator/power_data/${PrimaryData[e.target.value]}/${powersetDisplayNames[0].toLowerCase().replace(/ +/g, '_')}/index.json`)
       })
       .then((response) => response.json())
       .then((data) => {
           powerNames = data.power_names.map(name => name.split('.')[2])
           let newPowerData = [];
           for(var i = 0; i < powerNames.length; i++) {
-            fetch(`power_data/${PrimaryData[e.target.value]}/${powersetDisplayNames[0].toLowerCase().replace(/ +/g, '_')}/${powerNames[i].toLowerCase().replace(/ +/g, '_')}.json`)
+            fetch(`HomecomingCalculator/power_data/${PrimaryData[e.target.value]}/${powersetDisplayNames[0].toLowerCase().replace(/ +/g, '_')}/${powerNames[i].toLowerCase().replace(/ +/g, '_')}.json`)
               .then((response) => response.json())
               .then((data) => {
                 newPowerData.push(data);
               });
           }
           setPrimaryPowerData(newPowerData);
-          return fetch(`power_data/${SecondaryData[e.target.value]}/index.json`)
+          return fetch(`HomecomingCalculator/power_data/${SecondaryData[e.target.value]}/index.json`)
         })      
         .then((response) => response.json())
         .then((data) => {
@@ -58,7 +59,7 @@ function App() {
           if(powersetDisplayNames[0] === 'Bio Armor') {
             powersetDisplayNames[0] = "Bio Organic Armor";
           }
-          return fetch(`power_data/${SecondaryData[e.target.value]}/${powersetDisplayNames[0].toLowerCase().replace(/ +/g, '_')}/index.json`)
+          return fetch(`HomecomingCalculator/power_data/${SecondaryData[e.target.value]}/${powersetDisplayNames[0].toLowerCase().replace(/ +/g, '_')}/index.json`)
         })
         .then((response) => response.json())
         .then((data) => {
@@ -66,13 +67,13 @@ function App() {
             let newPowerData = [];
             for(var i = 0; i < powerNames.length; i++) {
               if(powerNames[i] === "Touch of the Beyond") {
-                fetch(`power_data/${SecondaryData[e.target.value]}/${powersetDisplayNames[0].toLowerCase().replace(/ +/g, '_')}/touch_of_fear.json`)
+                fetch(`HomecomingCalculator/power_data/${SecondaryData[e.target.value]}/${powersetDisplayNames[0].toLowerCase().replace(/ +/g, '_')}/touch_of_fear.json`)
                   .then((response) => response.json())
                   .then((data) => {
                     newPowerData.push(data);
                   });
               } else {
-                fetch(`power_data/${SecondaryData[e.target.value]}/${powersetDisplayNames[0].toLowerCase().replace(/ +/g, '_')}/${powerNames[i].toLowerCase().replace(/ +/g, '_')}.json`)
+                fetch(`HomecomingCalculator/power_data/${SecondaryData[e.target.value]}/${powersetDisplayNames[0].toLowerCase().replace(/ +/g, '_')}/${powerNames[i].toLowerCase().replace(/ +/g, '_')}.json`)
                   .then((response) => response.json())
                   .then((data) => {
                     newPowerData.push(data);
@@ -80,27 +81,27 @@ function App() {
               }
             }
             setSecondaryPowerData(newPowerData);
-            return fetch(`power_data/${EpicData[e.target.value]}/index.json`)
+            return fetch(`HomecomingCalculator/power_data/${EpicData[e.target.value]}/index.json`)
           })
           .then((response) => response.json())
           .then((data) => {
             powersetDisplayNames = data.powerset_display_names;
             setEpicList([...powersetDisplayNames])
-            return fetch(`power_data/${EpicData[e.target.value]}/${powersetDisplayNames[0].toLowerCase().replace(/ +/g, '_')}/index.json`)
+            return fetch(`HomecomingCalculator/power_data/${EpicData[e.target.value]}/${powersetDisplayNames[0].toLowerCase().replace(/ +/g, '_')}/index.json`)
           })
           .then((response) => response.json())
           .then((data) => {
             powerNames = data.power_names.map(name => name.split('.')[2]);
             let newPowerData = [];
             for(var i = 0; i < powerNames.length; i++) {
-              fetch(`power_data/${EpicData[e.target.value]}/${powersetDisplayNames[0].toLowerCase().replace(/ +/g, '_')}/${powerNames[i].toLowerCase().replace(/ +/g, '_')}.json`)
+              fetch(`HomecomingCalculator/power_data/${EpicData[e.target.value]}/${powersetDisplayNames[0].toLowerCase().replace(/ +/g, '_')}/${powerNames[i].toLowerCase().replace(/ +/g, '_')}.json`)
                 .then((response) => response.json())
                 .then((data) => {
                   newPowerData.push(data);
                 });
             }
             setEpicPowerData(newPowerData);
-            return fetch(`power_data/${EpicData[e.target.value]}/index.json`)
+            return fetch(`HomecomingCalculator/power_data/${EpicData[e.target.value]}/index.json`)
           })
   }
 
@@ -121,13 +122,14 @@ function App() {
     if(powerSetName === 'Ninja Blade') {
       powerSetName = 'Ninja Sword';
     }
-    fetch(`power_data/${PrimaryData[archetype]}/${powerSetName.toLowerCase().replace(/ +/g, '_')}/index.json`)
+    console.log(`HomecomingCalculator/power_data/${PrimaryData[archetype]}/${powerSetName.toLowerCase().replace(/ +/g, '_')}/index.json`)
+    fetch(`HomecomingCalculator/power_data/${PrimaryData[archetype]}/${powerSetName.toLowerCase().replace(/ +/g, '_')}/index.json`)
       .then((response) => response.json())
       .then((data) => {
         powerNames = data.power_names.map(name => name.split('.')[2])
         let newPowerData = [];
         for(var i = 0; i < powerNames.length; i++) {
-          fetch(`power_data/${PrimaryData[archetype]}/${powerSetName.toLowerCase().replace(/ +/g, '_')}/${powerNames[i].toLowerCase().replace(/ +/g, '_')}.json`)
+          fetch(`HomecomingCalculator/power_data/${PrimaryData[archetype]}/${powerSetName.toLowerCase().replace(/ +/g, '_')}/${powerNames[i].toLowerCase().replace(/ +/g, '_')}.json`)
             .then((response) => response.json())
             .then((data) => {
               newPowerData.push(data);
@@ -157,13 +159,13 @@ function App() {
     if(powerSetName === 'Bio Armor') {
       powerSetName = "Bio Organic Armor";
     }
-    fetch(`power_data/${SecondaryData[archetype]}/${powerSetName.toLowerCase().replace(/ +/g, '_')}/index.json`)
+    fetch(`HomecomingCalculator/power_data/${SecondaryData[archetype]}/${powerSetName.toLowerCase().replace(/ +/g, '_')}/index.json`)
       .then((response) => response.json())
       .then((data) => {
         powerNames = data.power_names.map(name => name.split('.')[2])
         let newPowerData = [];
         for(var i = 0; i < powerNames.length; i++) {
-          fetch(`power_data/${SecondaryData[archetype]}/${powerSetName.toLowerCase().replace(/ +/g, '_')}/${powerNames[i].toLowerCase().replace(/ +/g, '_')}.json`)
+          fetch(`HomecomingCalculator/power_data/${SecondaryData[archetype]}/${powerSetName.toLowerCase().replace(/ +/g, '_')}/${powerNames[i].toLowerCase().replace(/ +/g, '_')}.json`)
             .then((response) => response.json())
             .then((data) => {
               newPowerData.push(data);
@@ -178,13 +180,13 @@ function App() {
     let powerNames;
     let powerSetName = e.target.value;
 
-    fetch(`power_data/${EpicData[archetype]}/${powerSetName.toLowerCase().replace(/ +/g, '_')}/index.json`)
+    fetch(`HomecomingCalculator/power_data/${EpicData[archetype]}/${powerSetName.toLowerCase().replace(/ +/g, '_')}/index.json`)
     .then((response) => response.json())
     .then((data) => {
       powerNames = data.power_names.map(name => name.split('.')[2])
       let newPowerData = [];
       for(var i = 0; i < powerNames.length; i++) {
-        fetch(`power_data/${EpicData[archetype]}/${powerSetName.toLowerCase().replace(/ +/g, '_')}/${powerNames[i].toLowerCase().replace(/ +/g, '_')}.json`)
+        fetch(`HomecomingCalculator/power_data/${EpicData[archetype]}/${powerSetName.toLowerCase().replace(/ +/g, '_')}/${powerNames[i].toLowerCase().replace(/ +/g, '_')}.json`)
           .then((response) => response.json())
           .then((data) => {
             newPowerData.push(data);
@@ -260,7 +262,7 @@ function App() {
         secondaryPowersetData={secondaryPowerData}
         epicPowersetData={epicPowerData}
       />
-      <div className="container">
+      <div className="container p-0">
         <Button
           onClick={handleValidateChain}
           className="my-3"
