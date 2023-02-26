@@ -92,6 +92,7 @@ export const PowerRow = (props) => {
   ]);
 
   const handlePowerChange = (e) => {
+
     const selectedPower = JSON.parse(e.target.value);
     let currentChainPowers = [...props.chainPowers];
 
@@ -230,6 +231,7 @@ export const PowerRow = (props) => {
             <Form.Label>Power</Form.Label>
             <Form.Select
               onChange={(e) => handlePowerChange(e)}
+              value={JSON.stringify(props[`${props.chainPowers[props.row].category}PowersetData`].find((power) => power.name === props.chainPowers[props.row].name))}
             >
               {
                 props.category === "primary" && props.primaryPowersetData.map((power) => {

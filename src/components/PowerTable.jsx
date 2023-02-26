@@ -176,55 +176,21 @@ export const PowerTable = (props) => {
       {
         props.chainPowers.length > 0 ? (
           props.chainPowers.map((power, i) => {
-            if(power.category === 'primary') {
-              return (
-                <PowerRow
-                  key={i}
-                  row={i}
-                  category='primary'
-                  archetype={props.archetype}
-                  power={power}
-                  primaryPowersetData={props.primaryPowersetData}
-                  secondaryPowersetData={props.secondaryPowersetData}
-                  epicPowersetData={props.epicPowersetData}
-                  chainPowers={props.chainPowers}
-                  setChainPowers={props.setChainPowers}
-                  isCritStrikes={power.isCritStrikes}
-                />
-              )
-            } else if(power.category === 'secondary') {
-              return (
-                <PowerRow
-                  key={i}
-                  row={i}
-                  category='secondary'
-                  archetype={props.archetype}
-                  power={power}
-                  primaryPowersetData={props.primaryPowersetData}
-                  secondaryPowersetData={props.secondaryPowersetData}
-                  epicPowersetData={props.epicPowersetData}
-                  chainPowers={props.chainPowers}
-                  setChainPowers={props.setChainPowers}
-                  isCritStrikes={power.isCritStrikes}
-                />
-              )
-            } else if(power.category === 'epic') {
-              return (
-                <PowerRow
-                  key={i}
-                  row={i}
-                  category='epic'
-                  archetype={props.archetype}
-                  power={power}
-                  primaryPowersetData={props.primaryPowersetData}
-                  secondaryPowersetData={props.secondaryPowersetData}
-                  epicPowersetData={props.epicPowersetData}
-                  chainPowers={props.chainPowers}
-                  setChainPowers={props.setChainPowers}
-                  isCritStrikes={power.isCritStrikes}
-                />
-              )
-            }
+            return (
+              <PowerRow
+                key={i}
+                row={i}
+                category={power.category}
+                archetype={props.archetype}
+                power={power}
+                primaryPowersetData={props.primaryPowersetData}
+                secondaryPowersetData={props.secondaryPowersetData}
+                epicPowersetData={props.epicPowersetData}
+                chainPowers={props.chainPowers}
+                setChainPowers={props.setChainPowers}
+                isCritStrikes={power.isCritStrikes}
+              />
+            )
           })
         ) : (
           <Row><span>No Powers</span></Row>
